@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record model="hospital.patients" id="hospital_demo_data_0">
+        <field name="name">Saurabh demo</field>
+        <field name="age">21</field>
+        <field name="diagnosis">Regular checkup</field>
+    </record>
+
+    <record model="hospital.patients" id="hospital_demo_data_1">
+        <field name="name">Marc demo</field>
+        <field name="age">35</field>
+        <field name="diagnosis">Blood checkup</field>
+    </record>
+
+    <record model="hospital.doctors" id="hospital_demo_data_2">
+        <field name="name">Dr. Adam demo</field>
+        <field name="phone_number">9000202031</field>
+        <field name="specialization">Cornea</field>
+        <field name="fees">400</field>
+    </record>
+
+    <record model="hospital.doctors" id="hospital_demo_data_3">
+        <field name="name">Dr. Eve demo</field>
+        <field name="phone_number">9000202036</field>
+        <field name="specialization">Kidney</field>
+        <field name="fees">500</field>
+    </record>
+</odoo>

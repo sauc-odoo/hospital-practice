@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="hospital_menu_doctors" model="ir.actions.act_window">
+            <field name="name">Doctors</field>
+            <field name="res_model">hospital.doctors</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- ___________________________TREE VIEW___________________________ -->
+
+    <record id="hospital_doctors_view_tree" model="ir.ui.view">
+        <field name="name">hospital.doctors.view.tree</field>
+        <field name="model">hospital.doctors</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="availability"/>
+                <field name="specialization"/>
+                <field name="fees" optional="hide"/>
+            </tree>
+        </field>
+    </record>    
+
+<!-- __________________________FORM VIEW__________________________ -->
+
+    <record id="hospital_doctors_view_form" model="ir.ui.view">
+        <field name="name">hospital.doctors.view.form</field>
+        <field name="model">hospital.doctors</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <label for="name" string="Name"></label>
+                    <h1><field name="name"/></h1>
+
+                    <group>
+                        <group>
+                            <field name="gender"/> 
+                        </group>
+                        <group>
+                            <field name="dob"/> 
+                        </group>
+                        <group>
+                            <field name="qualification"/> 
+                        </group>
+                        <group>
+                            <field name="specialization"/> 
+                        </group>
+                        <group>
+                            <field name="fees"/> 
+                        </group>
+                        <group>
+                            <field name="availability"/> 
+                        </group>
+                    </group>
+                    
+                    <group>    
+                        <group>
+                            <field name="age"/> 
+                        </group>
+                        <group>
+                            <field name="phone_number"/> 
+                        </group>
+                        <group>
+                            <field name="email"/> 
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Profile">
+                            <group>
+                                <group>
+                                    <field name="rating"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
