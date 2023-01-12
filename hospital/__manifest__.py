@@ -9,6 +9,8 @@
             'views/hospital_patients_views.xml',
             'views/hospital_doctors_views.xml',
             'views/hospital_category_views.xml',
+            'views/hospital_bed_type_views.xml',
+            'views/hospital_bills_views.xml',
             'views/hospital_views_action.xml',
             'security/ir.model.access.csv',
         ],

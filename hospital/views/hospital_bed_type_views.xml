@@ -1,0 +1,37 @@
+<odoo>
+    <record id="hospital_bed_allocation_bed_type" model="ir.actions.act_window">
+            <field name="name">Bed Types</field>
+            <field name="res_model">hospital.bed.type</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- ___________________________Bed Type TREE VIEW___________________________ -->
+
+<record id="hospital_bed_type_view_tree" model="ir.ui.view">
+    <field name="name">hospital.bed.type.view.tree</field>
+    <field name="model">hospital.bed.type</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="price"/>
+        </tree>
+    </field>
+</record>    
+
+<!-- __________________________Bed Type FORM VIEW__________________________ -->
+
+<record id="hospital_bed_type_view_form" model="ir.ui.view">
+    <field name="name">hospital.bed.type.view.form</field>
+    <field name="model">hospital.bed.type</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <h1><field name="name"/></h1>
+                <group>
+                    <field name="price"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+</odoo>

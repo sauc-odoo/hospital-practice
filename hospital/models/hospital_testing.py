@@ -7,5 +7,6 @@ class HospitalModel(models.Model):
     _description = "Hospital Category - Testing Model"
 
     name = fields.Char('Name')
+    color = fields.Integer()
     list_testing_patients = fields.One2many('hospital.patients', 'testing_ids')
     

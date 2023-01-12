@@ -5,3 +5,5 @@ hospital.access_hospital_testing,access_hospital_testing,hospital.model_hospital
 hospital.access_hospital_specific_organ,access_hospital_specific_organ,hospital.model_hospital_specific_organ,base.group_user,1,1,1,1
 hospital.access_hospital_surgery,access_hospital_surgery,hospital.model_hospital_surgery,base.group_user,1,1,1,1
 hospital.access_hospital_general_problems,access_hospital_general_problems,hospital.model_hospital_general_problems,base.group_user,1,1,1,1
+hospital.access_hospital_bed_type,access_hospital_bed_type,hospital.model_hospital_bed_type,base.group_user,1,1,1,1
+hospital.access_hospital_bills,access_hospital_bills,hospital.model_hospital_bills,base.group_user,1,1,1,1

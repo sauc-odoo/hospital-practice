@@ -5,12 +5,16 @@
         <menuitem id="hospital_first_level_menu" name="Menu">
             <menuitem id="hospital_menu_action_patients" action="hospital_menu_patients"/>
             <menuitem id="hospital_menu_action_doctors" action="hospital_menu_doctors"/>
+            <menuitem id="hospital_menu_action_bills" action="hospital_menu_bills"/>
         </menuitem>
         <menuitem id="hospital_second_level_menu" name="Category">
             <menuitem id="hospital_category_action_testing" action="hospital_category_testing"/>
             <menuitem id="hospital_category_action_specific_organ" action="hospital_category_specific_organ"/>
             <menuitem id="hospital_category_action_surgery" action="hospital_category_surgery"/>
             <menuitem id="hospital_category_action_general_problems" action="hospital_category_general_problems"/>
+        </menuitem>
+        <menuitem id="hospital_third_level_menu" name="Bed Allocation">
+            <menuitem id="hospital_bed_allocation_action_bed_type" action="hospital_bed_allocation_bed_type"/>
         </menuitem>
     </menuitem>
 </odoo>

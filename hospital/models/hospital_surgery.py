@@ -8,3 +8,4 @@ class HospitalModel(models.Model):
 
     name = fields.Char('Name')
     list_surgery_patients = fields.One2many('hospital.patients', 'surgery_id', string="List of patients")
+    

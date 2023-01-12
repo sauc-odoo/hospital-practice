@@ -38,9 +38,6 @@
                             <field name="gender"/> 
                         </group>
                         <group>
-                            <field name="dob"/> 
-                        </group>
-                        <group>
                             <field name="qualification"/> 
                         </group>
                         <group>
@@ -52,9 +49,15 @@
                         <group>
                             <field name="availability"/> 
                         </group>
+                        <group>
+                            <field name="dob"/> 
+                        </group>
                     </group>
                     
-                    <group>    
+                    <group>
+                        <group>
+                            <field name="date"/> 
+                        </group> 
                         <group>
                             <field name="age"/> 
                         </group>

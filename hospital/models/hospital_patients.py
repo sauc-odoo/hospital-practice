@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 
 class HospitalModel(models.Model):
     _name = "hospital.patients"
-    _description = "Hospital Patients Model"
+    _description = "Hospital menu - Patients Model"
 
     name = fields.Char('Name', required=True)
     gender = fields.Selection(
@@ -16,7 +16,7 @@ class HospitalModel(models.Model):
     )
     dob = fields.Date('Date Of Birth')
     date = fields.Date(readonly = True, default= lambda self: fields.datetime.now())
-    age = fields.Integer('Age', compute="_compute_age")
+    age = fields.Integer('Age', compute="_compute_patient_age")
     height = fields.Float('Height')
     weight = fields.Float('Weight')
     diagnosis = fields.Char('Diagnosis', required=True, default="Regular Checkup")
@@ -24,11 +24,15 @@ class HospitalModel(models.Model):
     temperature = fields.Char('Temperature')
     blood_pressure = fields.Char('Blood Pressure')
     sugar_level = fields.Char('Sugar Level')
-    phone_number = fields.Char('Phone Number')
+    phone_number = fields.Char('Phone Number', default="9999999999")
     testing_ids = fields.Many2many('hospital.testing', string="Testings")
     specific_organ_id = fields.Many2one('hospital.specific.organ', string="Organ effected")
     surgery_id = fields.Many2one('hospital.surgery', string="Surgery")
     general_problems_id = fields.Many2one('hospital.general.problems', string="General Problems")
+    bills_ids = fields.One2many('hospital.bills', 'patient_id', string="Bills")
+    state = fields.Selection(
+            selection=[('new', 'New'), ('billing', 'Billing'), ('treated', 'Treated'), ('untreated', 'Untreated')], default="new"
+        )
 
     _sql_constraints = [
         ('check_height', 'CHECK(height >= 0)',
@@ -38,9 +42,25 @@ class HospitalModel(models.Model):
     ]
 
     @api.depends("dob", "date")
-    def _compute_age(self):
+    def _compute_patient_age(self):
         for record in self:
             record.age = relativedelta(record.date, record.dob).years
+
+    def action_treated(self):
+        for record in self:
+            if record.bills_ids.status == "paid":
+                record.state = "treated"
+            else:
+                raise ValidationError("first pay the bill")
+        return True
+
+    def action_untreated(self):
+        for record in self:
+            if record.state == "treated":
+                raise ValidationError("patient has been treated")
+            else:
+                record.state = "untreated"
+        return True
 
     @api.constrains('phone_number')
     def _check_phone_number(self):
