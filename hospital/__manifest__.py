@@ -8,6 +8,7 @@
     'data' : [
             'views/hospital_patients_views.xml',
             'views/hospital_doctors_views.xml',
+            'views/hospital_category_views.xml',
             'views/hospital_views_action.xml',
             'security/ir.model.access.csv',
         ],

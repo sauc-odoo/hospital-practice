@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="hospital_category_testing" model="ir.actions.act_window">
+            <field name="name">Testing</field>
+            <field name="res_model">hospital.testing</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+    <record id="hospital_category_specific_organ" model="ir.actions.act_window">
+        <field name="name">Specific Organ</field>
+        <field name="res_model">hospital.specific.organ</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="hospital_category_surgery" model="ir.actions.act_window">
+        <field name="name">Surgery</field>
+        <field name="res_model">hospital.surgery</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="hospital_category_general_problems" model="ir.actions.act_window">
+        <field name="name">General Problems</field>
+        <field name="res_model">hospital.general.problems</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- ___________________________Testing TREE VIEW___________________________ -->
+
+    <record id="hospital_testing_view_tree" model="ir.ui.view">
+        <field name="name">hospital.testing.view.tree</field>
+        <field name="model">hospital.testing</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>    
+
+<!-- __________________________Testing FORM VIEW__________________________ -->
+
+    <record id="hospital_testing_view_form" model="ir.ui.view">
+        <field name="name">hospital.testing.view.form</field>
+        <field name="model">hospital.testing</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1><field name="name"/></h1>
+                    <notebook>
+                        <page string="Patients list">
+                            <field name="list_testing_patients"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!-- ___________________________Specific Organ TREE VIEW___________________________ -->
+
+<record id="hospital_specific_organ_view_tree" model="ir.ui.view">
+    <field name="name">hospital.specific.organ.view.tree</field>
+    <field name="model">hospital.specific.organ</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>    
+
+<!-- __________________________Specific Organ FORM VIEW__________________________ -->
+
+<record id="hospital_specific_organ_view_form" model="ir.ui.view">
+    <field name="name">hospital.specific.organ.view.form</field>
+    <field name="model">hospital.specific.organ</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <h1><field name="name"/></h1>
+                <notebook>
+                    <page string="Patients list">
+                        <field name="list_specific_organ_patients"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<!-- ___________________________Surgery TREE VIEW___________________________ -->
+
+<record id="hospital_surgery_view_tree" model="ir.ui.view">
+    <field name="name">hospital.surgery.view.tree</field>
+    <field name="model">hospital.surgery</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>    
+
+<!-- __________________________Surgery FORM VIEW__________________________ -->
+
+<record id="hospital_surgery_view_form" model="ir.ui.view">
+    <field name="name">hospital.surgery.view.form</field>
+    <field name="model">hospital.surgery</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <h1><field name="name"/></h1>
+                <notebook>
+                    <page string="Patients list">
+                        <field name="list_surgery_patients"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<!-- ___________________________General Problems TREE VIEW___________________________ -->
+
+<record id="hospital_general_problems_view_tree" model="ir.ui.view">
+    <field name="name">hospital.general.problems.view.tree</field>
+    <field name="model">hospital.general.problems</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>    
+
+<!-- __________________________General Problems FORM VIEW__________________________ -->
+
+<record id="hospital_general_problems_view_form" model="ir.ui.view">
+    <field name="name">hospital.general.problems.view.form</field>
+    <field name="model">hospital.general.problems</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <h1><field name="name"/></h1>
+                <notebook>
+                    <page string="Patients list">
+                        <field name="list_general_problems_patients"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+</odoo>

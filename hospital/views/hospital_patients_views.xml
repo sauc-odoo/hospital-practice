@@ -4,6 +4,7 @@
             <field name="name">Patients</field>
             <field name="res_model">hospital.patients</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_gender_male":1}</field>
     </record>
 
 <!-- ___________________________TREE VIEW___________________________ -->
@@ -32,17 +33,16 @@
                 <sheet>
                     <label for="name" string="Name"></label>
                     <h1><field name="name"/></h1>
-
                     <group>
                         <group>
                             <field name="gender"/> 
                         </group>
                         <group>
+                            <field name="date"/> 
+                        </group>
+                        <group>
                             <field name="dob"/> 
                         </group>
-                    </group>
-                    
-                    <group>    
                         <group>
                             <field name="age"/> 
                         </group>
@@ -52,6 +52,21 @@
                         <group>
                             <field name="phone_number"/> 
                         </group>
+                    </group>
+                    
+                    <group>
+                        <group>
+                            <field name="testing_ids" widget="many2many_tags"/> 
+                        </group>
+                        <group>
+                            <field name="specific_organ_id"/> 
+                        </group>  
+                        <group>
+                            <field name="surgery_id"/> 
+                        </group>
+                        <group>
+                            <field name="general_problems_id"/> 
+                        </group>  
                     </group>
 
                     <notebook>
@@ -82,4 +97,23 @@
             </form>
         </field>
     </record>
+
+<!-- ________________________SEARCH VIEW___________________________ -->
+
+<record id="hospital_patients_view_search" model="ir.ui.view">
+    <field name="name">hospital.patients.view.search</field>
+    <field name="model">hospital.patients</field>
+    <field name="arch" type="xml">
+        <search string="search patients">
+            <field name="name"/>
+            <field name="weight"/>
+            <field name="age" string="Age greater than" filter_domain="[('age', '>=', self)]"/>
+            <filter name="gender_male" string="Male Patients" domain="[('gender', '=', 'male')]"/>
+            <filter name="gender_female" string="Female Patients" domain="[('gender', '=', 'female')]"/>
+            <group expand="1" string="group by">
+                <filter name="diagnosis" string="Diagnosis" context="{'group_by':'diagnosis'}"/>
+            </group>
+        </search>
+    </field>
+</record>
 </odoo>

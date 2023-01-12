@@ -1,3 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 hospital.access_hospital_patients,access_hospital_patients,hospital.model_hospital_patients,base.group_user,1,1,1,1
 hospital.access_hospital_doctors,access_hospital_doctors,hospital.model_hospital_doctors,base.group_user,1,1,1,1
+hospital.access_hospital_testing,access_hospital_testing,hospital.model_hospital_testing,base.group_user,1,1,1,1
+hospital.access_hospital_specific_organ,access_hospital_specific_organ,hospital.model_hospital_specific_organ,base.group_user,1,1,1,1
+hospital.access_hospital_surgery,access_hospital_surgery,hospital.model_hospital_surgery,base.group_user,1,1,1,1
+hospital.access_hospital_general_problems,access_hospital_general_problems,hospital.model_hospital_general_problems,base.group_user,1,1,1,1

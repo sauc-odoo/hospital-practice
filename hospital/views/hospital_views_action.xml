@@ -3,8 +3,14 @@
 <odoo>
     <menuitem id="hospital_menu_root" name="Hospital">
         <menuitem id="hospital_first_level_menu" name="Menu">
-            <menuitem id="hospital_menu_action_0" action="hospital_menu_patients"/>
-            <menuitem id="hospital_menu_action_1" action="hospital_menu_doctors"/>
+            <menuitem id="hospital_menu_action_patients" action="hospital_menu_patients"/>
+            <menuitem id="hospital_menu_action_doctors" action="hospital_menu_doctors"/>
+        </menuitem>
+        <menuitem id="hospital_second_level_menu" name="Category">
+            <menuitem id="hospital_category_action_testing" action="hospital_category_testing"/>
+            <menuitem id="hospital_category_action_specific_organ" action="hospital_category_specific_organ"/>
+            <menuitem id="hospital_category_action_surgery" action="hospital_category_surgery"/>
+            <menuitem id="hospital_category_action_general_problems" action="hospital_category_general_problems"/>
         </menuitem>
     </menuitem>
 </odoo>

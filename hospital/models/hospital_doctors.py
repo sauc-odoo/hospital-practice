@@ -19,8 +19,10 @@ class HospitalModel(models.Model):
     availability = fields.Boolean()
     specialization = fields.Char('Specialist Of', required=True)
     fees = fields.Integer('Fees', required=True)
-    rating = fields.Selection(
-        string="Ratings",
-        selection=[('one', '*'), ('two', '**'), ('three', '***'), ('four', '****'), ('five', '*****')]
-    )
+    success_rate = fields.Integer('Success Rate')
+
+    _sql_constraints = [
+        ('check_success_rate', 'CHECK(success_rate <= 100 AND success_rate >= 0)',
+         'The Success rate should be appropriate')
+    ]
     

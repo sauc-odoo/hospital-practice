@@ -3,13 +3,13 @@
 <odoo>
     <record model="hospital.patients" id="hospital_demo_data_0">
         <field name="name">Saurabh demo</field>
-        <field name="age">21</field>
+        <field name="gender">Male</field>
         <field name="diagnosis">Regular checkup</field>
     </record>
 
     <record model="hospital.patients" id="hospital_demo_data_1">
         <field name="name">Marc demo</field>
-        <field name="age">35</field>
+        <field name="gender">Female</field>
         <field name="diagnosis">Blood checkup</field>
     </record>
 

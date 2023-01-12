@@ -70,7 +70,7 @@
                         <page string="Profile">
                             <group>
                                 <group>
-                                    <field name="rating"/>
+                                    <field name="success_rate" placeholder="enter in percentage"/>
                                 </group>
                             </group>
                         </page>
