@@ -59,6 +59,7 @@
     <field name="model">hospital.specific.organ</field>
     <field name="arch" type="xml">
         <tree>
+            <field name="sequence" widget="handle"/>
             <field name="name"/>
         </tree>
     </field>

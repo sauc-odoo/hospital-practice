@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 class HospitalModel(models.Model):
     _name = "hospital.doctors"
     _description = "Hospital menu - Doctors Model"
+    _order = "id desc"
 
     name = fields.Char('Name', required=True)
     qualification = fields.Char('Qualification')
@@ -15,12 +16,12 @@ class HospitalModel(models.Model):
         selection=[('male', 'Male'), ('female', 'Female')]
     )
     dob = fields.Date('Date Of Birth')
-    age = fields.Integer('Age', compute="_compute_doctor_age")
+    doctor_age = fields.Integer('Age', compute="_compute_doctor_age", store=True)
     date = fields.Date(readonly = True, default= lambda self: fields.datetime.now())
     phone_number = fields.Char('Phone Number', required=True)
     email = fields.Char('E-mail')
     availability = fields.Boolean()
-    specialization = fields.Char('Specialist Of', required=True)
+    specialization = fields.Char('Specialist Of')
     fees = fields.Float('Fees', required=True)
     success_rate = fields.Integer('Success Rate')
 
@@ -32,7 +33,18 @@ class HospitalModel(models.Model):
     @api.depends("dob", "date")
     def _compute_doctor_age(self):
         for record in self:
-            record.age = relativedelta(record.date, record.dob).years
+            record.doctor_age = relativedelta(record.date, record.dob).years
+
+    def action_autofill(self):
+        for record in self:
+            record.qualification = "MBBS"
+            record.gender = 'male'
+            record.dob = "1990-01-01"
+            record.doctor_age = 30
+            record.email = "demodoctor@example.com"
+            record.availability = True
+            record.specialization = "Medicine"
+            record.success_rate = 90
 
     @api.constrains('phone_number')
     def _check_phone_number(self):

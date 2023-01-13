@@ -29,6 +29,9 @@
         <field name="arch" type="xml">
 
             <form>
+                <header>
+                    <button name="action_autofill" type="object" string="Auto-Fill" class="oe_highlight"/>
+                </header>
                 <sheet>
                     <label for="name" string="Name"></label>
                     <h1><field name="name"/></h1>
@@ -59,7 +62,7 @@
                             <field name="date"/> 
                         </group> 
                         <group>
-                            <field name="age"/> 
+                            <field name="doctor_age"/> 
                         </group>
                         <group>
                             <field name="phone_number"/> 
@@ -82,4 +85,24 @@
             </form>
         </field>
     </record>
+
+<!-- ________________________SEARCH VIEW___________________________ -->
+
+<record id="hospital_doctors_view_search" model="ir.ui.view">
+    <field name="name">hospital.doctors.view.search</field>
+    <field name="model">hospital.doctors</field>
+    <field name="arch" type="xml">
+        <search string="search doctors">
+            <field name="name"/>
+            <field name="specialization"/>
+            <field name="doctor_age" string="Age greater than" filter_domain="[('doctor_age', '&gt;=', self)]"/>
+            <field name="fees" string="Fees less than" filter_domain="[('fees', '&lt;=', self)]"/>
+            <filter name="gender_male" string="Male Doctors" domain="[('gender', '=', 'male')]"/>
+            <filter name="gender_female" string="Female Doctors" domain="[('gender', '=', 'female')]"/>
+            <group expand="1" string="group by">
+                <filter name="qualification" string="Qualification" context="{'group_by':'qualification'}"/>
+            </group>
+        </search>
+    </field>
+</record>
 </odoo>

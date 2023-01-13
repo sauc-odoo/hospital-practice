@@ -7,6 +7,8 @@ from odoo.exceptions import ValidationError
 class HospitalModel(models.Model):
     _name = "hospital.patients"
     _description = "Hospital menu - Patients Model"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = "id desc"
 
     name = fields.Char('Name', required=True)
     gender = fields.Selection(
@@ -16,7 +18,7 @@ class HospitalModel(models.Model):
     )
     dob = fields.Date('Date Of Birth')
     date = fields.Date(readonly = True, default= lambda self: fields.datetime.now())
-    age = fields.Integer('Age', compute="_compute_patient_age")
+    patient_age = fields.Integer('Age', compute="_compute_patient_age", store=True)
     height = fields.Float('Height')
     weight = fields.Float('Weight')
     diagnosis = fields.Char('Diagnosis', required=True, default="Regular Checkup")
@@ -31,7 +33,7 @@ class HospitalModel(models.Model):
     general_problems_id = fields.Many2one('hospital.general.problems', string="General Problems")
     bills_ids = fields.One2many('hospital.bills', 'patient_id', string="Bills")
     state = fields.Selection(
-            selection=[('new', 'New'), ('billing', 'Billing'), ('treated', 'Treated'), ('untreated', 'Untreated')], default="new"
+            selection=[('new', 'New'), ('billing', 'Billing'), ('treated', 'Treated'), ('untreated', 'Untreated')], default="new", tracking=True
         )
 
     _sql_constraints = [
@@ -44,7 +46,7 @@ class HospitalModel(models.Model):
     @api.depends("dob", "date")
     def _compute_patient_age(self):
         for record in self:
-            record.age = relativedelta(record.date, record.dob).years
+            record.patient_age = relativedelta(record.date, record.dob).years
 
     def action_treated(self):
         for record in self:
@@ -70,3 +72,8 @@ class HospitalModel(models.Model):
                     raise ValidationError("enter digits")
             if len(record.phone_number) != 10:
                 raise ValidationError("phone number should be of 10 digits")
+
+    @api.ondelete(at_uninstall=False)
+    def _deleting_the_record(self):
+        if self.state in ['billing', 'treated']:
+            raise ValidationError("only new and untreated patients can be deleted")

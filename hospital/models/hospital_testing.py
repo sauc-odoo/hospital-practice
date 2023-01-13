@@ -5,6 +5,7 @@ from odoo import models, fields
 class HospitalModel(models.Model):
     _name = "hospital.testing"
     _description = "Hospital Category - Testing Model"
+    _order = "name"
 
     name = fields.Char('Name')
     color = fields.Integer()

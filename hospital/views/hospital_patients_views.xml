@@ -13,9 +13,9 @@
         <field name="name">hospital.patients.view.tree</field>
         <field name="model">hospital.patients</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-danger="state =='untreated'" decoration-success="state =='treated'">
                 <field name="name"/>
-                <field name="age"/>
+                <field name="patient_age"/>
                 <field name="diagnosis"/>
                 <field name="state"/>
                 <field name="gender" optional="hide"/>
@@ -53,7 +53,7 @@
                             <field name="dob"/> 
                         </group>
                         <group>
-                            <field name="age"/> 
+                            <field name="patient_age"/> 
                         </group>
                         <group>
                             <field name="diagnosis"/> 
@@ -117,6 +117,11 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="activity_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>
@@ -130,7 +135,7 @@
         <search string="search patients">
             <field name="name"/>
             <field name="weight"/>
-            <field name="age" string="Age greater than" filter_domain="[('age', '>=', self)]"/>
+            <field name="patient_age" string="Age greater than" filter_domain="[('patient_age', '>=', self)]"/>
             <filter name="gender_male" string="Male Patients" domain="[('gender', '=', 'male')]"/>
             <filter name="gender_female" string="Female Patients" domain="[('gender', '=', 'female')]"/>
             <group expand="1" string="group by">
