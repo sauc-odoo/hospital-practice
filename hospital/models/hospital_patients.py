@@ -32,6 +32,7 @@ class HospitalModel(models.Model):
     surgery_id = fields.Many2one('hospital.surgery', string="Surgery")
     general_problems_id = fields.Many2one('hospital.general.problems', string="General Problems")
     bills_ids = fields.One2many('hospital.bills', 'patient_id', string="Bills")
+    doctor_id = fields.Many2one('hospital.doctors', string="Doctor")
     state = fields.Selection(
             selection=[('new', 'New'), ('billing', 'Billing'), ('treated', 'Treated'), ('untreated', 'Untreated')], default="new", tracking=True
         )

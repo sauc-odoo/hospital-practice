@@ -70,6 +70,9 @@
                         <group>
                             <field name="email"/> 
                         </group>
+                        <group>
+                            <field name="work_time" widget="float_time"/> 
+                        </group>
                     </group>
 
                     <notebook>
@@ -79,6 +82,9 @@
                                     <field name="success_rate" placeholder="enter in percentage"/>
                                 </group>
                             </group>
+                        </page>
+                        <page string="Patients List">
+                            <field name="list_patients"/>
                         </page>
                     </notebook>
                 </sheet>

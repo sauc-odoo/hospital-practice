@@ -18,12 +18,14 @@ class HospitalModel(models.Model):
     dob = fields.Date('Date Of Birth')
     doctor_age = fields.Integer('Age', compute="_compute_doctor_age", store=True)
     date = fields.Date(readonly = True, default= lambda self: fields.datetime.now())
-    phone = fields.Char('Phone Number', required=True)
+    phone_number = fields.Char('Phone Number', required=True)
     email = fields.Char('E-mail')
     availability = fields.Boolean()
     specialization = fields.Char('Specialist Of')
     fees = fields.Float('Fees', required=True)
     success_rate = fields.Integer('Success Rate')
+    work_time = fields.Float('Working Time')
+    list_patients = fields.One2many('hospital.patients', 'doctor_id')
 
     _sql_constraints = [
         ('check_success_rate', 'CHECK(success_rate <= 100 AND success_rate >= 0)',
