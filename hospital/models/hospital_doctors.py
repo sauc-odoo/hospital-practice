@@ -18,7 +18,7 @@ class HospitalModel(models.Model):
     dob = fields.Date('Date Of Birth')
     doctor_age = fields.Integer('Age', compute="_compute_doctor_age", store=True)
     date = fields.Date(readonly = True, default= lambda self: fields.datetime.now())
-    phone_number = fields.Char('Phone Number', required=True)
+    phone = fields.Char('Phone Number', required=True)
     email = fields.Char('E-mail')
     availability = fields.Boolean()
     specialization = fields.Char('Specialist Of')
