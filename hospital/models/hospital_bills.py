@@ -18,6 +18,7 @@ class HospitalModel(models.Model):
     status = fields.Selection(
         selection=[('paid', 'Paid'), ('due', 'Due'),], default='due'
     )
+    bill_initiator = fields.Many2one('res.partner', string="Bill Initiator")
 
     @api.depends("no_of_days", "bed_price")
     def _compute_total_bed_price(self):
@@ -33,8 +34,10 @@ class HospitalModel(models.Model):
         for record in self:
             record.status = "paid"
         self.patient_id.state = "billing"
+        self.patient_id.amount_paid = self.total_bill
 
     def action_due(self):
         for record in self:
             record.status = "due"
         self.patient_id.state = "billing"
+        self.patient_id.amount_paid = 0.00

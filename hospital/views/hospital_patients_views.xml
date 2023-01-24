@@ -78,7 +78,13 @@
                         </group>
                         <group>
                             <field name="general_problems_id"/> 
-                        </group>  
+                        </group>
+                        <group>
+                            <field name="amount_paid"/> 
+                        </group>
+                        <group>
+                            <field name="bill_initiator"/> 
+                        </group>
                     </group>
 
                     <notebook>
@@ -112,8 +118,8 @@
                                     <field name="bed_type_id"/>
                                     <field name="no_of_days"/>
                                     <field name="total_bill"/>
-                                    <button name="action_paid" type="object" string="paid" icon="fa-check"/>
-                                    <button name="action_due" type="object" string="due" icon="fa-times"/>
+                                    <button name="action_paid" type="object" string="paid" icon="fa-check" attrs="{'invisible': [('status', '=', 'paid')]}"/>
+                                    <button name="action_due" type="object" string="due" icon="fa-times" attrs="{'invisible': [('status', '=', 'due')]}"/>
                                     <field name="status"/>
                                 </tree>
                             </field>

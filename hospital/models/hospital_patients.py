@@ -36,6 +36,8 @@ class HospitalModel(models.Model):
     state = fields.Selection(
             selection=[('new', 'New'), ('billing', 'Billing'), ('treated', 'Treated'), ('untreated', 'Untreated')], default="new", tracking=True
         )
+    amount_paid = fields.Float('Amount Paid', readonly=True)
+    bill_initiator = fields.Many2one('res.partner', string="Bill Initiator")
 
     _sql_constraints = [
         ('check_height', 'CHECK(height >= 0)',
