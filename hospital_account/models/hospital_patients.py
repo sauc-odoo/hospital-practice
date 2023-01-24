@@ -6,6 +6,7 @@ class HospitalAccount(models.Model):
     _inherit = "hospital.patients"
 
     def action_treated(self):
+        
         self.env["account.move"].create(
             {
                 'partner_id': self.bill_initiator.id,
