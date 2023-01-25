@@ -8,7 +8,7 @@ class HospitalModel(models.Model):
     _name = "hospital.patients"
     _description = "Hospital menu - Patients Model"
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _order = "id desc"
+    _order = "state"
 
     name = fields.Char('Name', required=True)
     gender = fields.Selection(
@@ -34,7 +34,7 @@ class HospitalModel(models.Model):
     bills_ids = fields.One2many('hospital.bills', 'patient_id', string="Bills")
     doctor_id = fields.Many2one('hospital.doctors', string="Doctor")
     state = fields.Selection(
-            selection=[('new', 'New'), ('billing', 'Billing'), ('treated', 'Treated'), ('untreated', 'Untreated')], default="new", tracking=True
+            selection=[('new', 'New'), ('billing', 'Billing'), ('treated', 'Treated'), ('untreated', 'Untreated')], default='new', tracking=True
         )
     amount_paid = fields.Float('Amount Paid', readonly=True)
     bill_initiator = fields.Many2one('res.partner', string="Bill Initiator")
@@ -79,4 +79,5 @@ class HospitalModel(models.Model):
     @api.ondelete(at_uninstall=False)
     def _deleting_the_record(self):
         if self.state in ['billing', 'treated']:
-            raise ValidationError("only new and untreated patients can be deleted")
+            raise ValidationError("only new and untreated patients can be deleted") 
+    
