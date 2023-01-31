@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_patient_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="patient">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div style="font-weight: bold; font-size: 50px">
+                            <span t-field="patient.name"/>
+                        </div>
+                        <div style="margin: 10px">
+                            <strong>Diagnosis: </strong>
+                            <span t-field="patient.diagnosis"/>
+                        </div>
+                        <div style="margin: 10px">
+                            <strong>Testings: </strong>
+                            <span t-field="patient.testing_ids"/>
+                        </div>
+                        <div style="margin: 10px">
+                            <strong>Amount Paid: </strong>
+                            <span t-field="patient.amount_paid"/>
+                        </div>
+                        <div style="margin: 10px">
+                            <strong>State: </strong>
+                            <span t-field="patient.state"/>
+                        </div>
+                        <div style="margin: 15px">
+                            <t t-call="hospital.report_bill_table" />
+                        </div>
+                        <img t-att-src="'/report/barcode/QR/%s' % patient.website" style="margin: 20px; width: 150px; height: 150px"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    
+    <template id="report_doctor_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doctor">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div style="font-weight: bold; font-size: 50px">
+                            <span t-field="doctor.name"/>
+                        </div>
+                        <div style="font-size: 20px">
+                            <strong>Specialist Of: </strong>
+                            <span t-field="doctor.specialization"/>
+                        </div>
+                        <div style="font-size: 20px">
+                            <strong>Fees: </strong>
+                            <span t-field="doctor.fees"/>
+                        </div>
+                        <div style="font-size: 20px">
+                            <strong>Phone Number: </strong>
+                            <span t-field="doctor.phone_number"/>
+                        </div>
+                        <t t-set="patients" t-value="doctor.mapped('list_patients')"/>
+                        <t t-foreach="patients" t-as="patient">
+                            <div style="margin: 20px; border: 2px solid black">
+                                <div style="margin: 10px">
+                                    <h2>
+                                        <strong>Patient: </strong>
+                                        <span t-field="patient.name"/>
+                                    </h2>
+                                </div>
+                                <div style="margin: 10px">
+                                    <strong>Diagnosis: </strong>
+                                    <span t-field="patient.diagnosis"/>
+                                </div>
+                                <div style="margin: 10px">
+                                    <strong>State: </strong>
+                                    <span t-field="patient.state"/>
+                                </div>
+                                <div style="margin: 15px">
+                                    <t t-call="hospital.report_bill_table" />
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_bill_table">
+        <t t-if="patient.bills_ids">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Bill Initiator</th>
+                        <th>Doctor</th>
+                        <th>Bed Type</th>
+                        <th>No. of days</th>
+                        <th>Bill Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="bills" t-value="patient.mapped('bills_ids')"/>
+                    <tr t-foreach="bills" t-as="bill">
+                        <td>
+                            <span t-field="patient.bill_initiator"/>
+                        </td>
+                        <td>
+                            <span t-field="bill.doctor_id"/>
+                        </td>
+                        <td>
+                            <span t-field="bill.bed_type_id"/>
+                        </td>
+                        <td>
+                            <span t-field="bill.no_of_days"/>
+                        </td>
+                        <td>
+                            <span t-field="bill.total_bill"/>
+                        </td>
+                        <td>
+                            <span t-field="bill.status"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </t>
+        <t t-else="">
+            <strong>No bill created!</strong>
+        </t>
+    </template>
+</odoo>

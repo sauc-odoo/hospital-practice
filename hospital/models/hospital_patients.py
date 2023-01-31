@@ -8,7 +8,7 @@ class HospitalModel(models.Model):
     _name = "hospital.patients"
     _description = "Hospital menu - Patients Model"
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _order = "state"
+    _order = "id desc"
 
     name = fields.Char('Name', required=True)
     gender = fields.Selection(
@@ -38,6 +38,7 @@ class HospitalModel(models.Model):
         )
     amount_paid = fields.Float('Amount Paid', readonly=True)
     bill_initiator = fields.Many2one('res.partner', string="Bill Initiator")
+    website = fields.Char('Website', default="www.odoo.com")
 
     _sql_constraints = [
         ('check_height', 'CHECK(height >= 0)',

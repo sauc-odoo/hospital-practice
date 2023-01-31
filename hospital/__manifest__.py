@@ -15,6 +15,9 @@
             'views/hospital_bed_type_views.xml',
             'views/hospital_bills_views.xml',
             'views/hospital_views_action.xml',
+
+            'report/hospital_templates.xml',
+            'report/hospital_reports.xml',
         ],
     'demo' : [
             'demo/hospital_patients_demo.xml',

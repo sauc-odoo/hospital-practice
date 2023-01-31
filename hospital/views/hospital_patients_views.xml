@@ -29,7 +29,7 @@
         <field name="name">hospital.patients.view.kanban</field>
         <field name="model">hospital.patients</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="state" records_draggable = "False">
+            <kanban default_order="state desc" default_group_by="state" records_draggable = "False">
                 <templates>
                     <field name="state"/>
                     <t t-name="kanban-box">
@@ -119,6 +119,9 @@
                         </group>
                         <group>
                             <field name="bill_initiator"/> 
+                        </group>
+                        <group>
+                            <field name="website" widget="url"/> 
                         </group>
                     </group>
 
