@@ -5,7 +5,7 @@
     'version' : '1.0',
     'author' : "Saurabh Choraria",
     'description' : "It is a module for hospital management",
-    'depends' : ['mail'],
+    'depends' : ['mail', 'website', 'event', 'website_sale'],
     'data' : [
             'security/ir.model.access.csv',
             
@@ -18,6 +18,7 @@
 
             'report/hospital_templates.xml',
             'report/hospital_reports.xml',
+            'report/controller_templates.xml',
         ],
     'demo' : [
             'demo/hospital_patients_demo.xml',

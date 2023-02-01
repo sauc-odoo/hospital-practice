@@ -39,7 +39,8 @@ class HospitalModel(models.Model):
     amount_paid = fields.Float('Amount Paid', readonly=True)
     bill_initiator = fields.Many2one('res.partner', string="Bill Initiator")
     website = fields.Char('Website', default="www.odoo.com")
-
+    listing = fields.Html()
+    
     _sql_constraints = [
         ('check_height', 'CHECK(height >= 0)',
          'The height should be positive'),

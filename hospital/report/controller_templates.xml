@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <template id="index">
+        <t t-call="website.layout">
+            <div class="container">
+                <t t-foreach="patients" t-as="patient">
+                    <p>
+                        <a t-attf-href="/hospital/{{ slug(patient) }}">
+                            <t t-esc="patient.id"/> <t t-esc="patient.name"/>
+                        </a>
+                    </p>
+                </t>
+            </div>
+        </t>
+    </template>
+    <template id="listing">
+        <t t-call="website.layout">
+            <div class="container">
+                <h3 t-field="person.name"/>
+                <div t-field="person.listing"/>
+                <p>Last modified: <i t-field="person.write_date" t-options='{"widget": "relative"}'/></p>
+            </div>
+        </t>
+    </template>
+</odoo>

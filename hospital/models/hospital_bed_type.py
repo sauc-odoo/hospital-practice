@@ -8,6 +8,7 @@ class HospitalModel(models.Model):
 
     name = fields.Char('Type', required=True)
     price = fields.Float('Price', required=True)
+    image = fields.Binary()
 
     _sql_constraints = [
         ('check_name', 'unique(name)',

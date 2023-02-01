@@ -1,8 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
 <odoo>
     <record id="hospital_bed_allocation_bed_type" model="ir.actions.act_window">
             <field name="name">Bed Types</field>
             <field name="res_model">hospital.bed.type</field>
-            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_mode">kanban,tree,form</field>
     </record>
 
 <!-- ___________________________Bed Type TREE VIEW___________________________ -->
@@ -28,6 +30,9 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="image" widget="image"/>
+                            </div>
                             <div class="oe_kanban_details">
                                 <strong class="o_kanban_record_title">
                                     <field name="name"/>
@@ -51,6 +56,9 @@
     <field name="arch" type="xml">
         <form>
             <sheet>
+                <div style="float: right; width: 75px; height: 100px">
+                    <field name="image" widget="image"/>
+                </div>
                 <h1><field name="name"/></h1>
                 <group>
                     <field name="price"/>
